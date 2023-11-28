@@ -49,7 +49,7 @@ window.addEventListener('load', function () {
 
           //armamos cada columna de la fila
           //como primer columna pondremos el boton modificar
-          //luego los datos de la pelicula
+          //luego los datos de la paciente
           //como ultima columna el boton eliminar
           pacienteRow.innerHTML =
             '<td>' +
@@ -68,10 +68,10 @@ window.addEventListener('load', function () {
             paciente.fechaIngreso.toUpperCase() +
             '</td>' +
             '<td class="td_domicilio">' +
-            paciente.domicilio.toUpperCase() +
+            paciente.domicilio.id.toUpperCase() +
             '</td>' +
             '<td class="td_email">' +
-            paciente.Email.toUpperCase() +
+            paciente.email.toUpperCase() +
             '</td>' +
             '<td>' +
             deleteButton +

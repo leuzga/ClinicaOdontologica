@@ -28,7 +28,7 @@ window.addEventListener('load', function () {
     };
     fetch(url, settings)
       .then((response) => response.json())
-      .then(localStorage.setItem('isShow', JSON.stringify(false)));
+      .then(localStorage.setItem('isShowOdontologo', JSON.stringify(false)));
   });
 });
 
@@ -44,7 +44,7 @@ function findBy(id) {
     .then((response) => response.json())
     .then((data) => {
       let odontologo = data;
-      localStorage.setItem('isShow', JSON.stringify(true));
+      localStorage.setItem('isShowOdontologo', JSON.stringify(true));
       document.querySelector('#odontologo_id').value = odontologo.id;
       document.querySelector('#matricula').value = odontologo.matricula;
       document.querySelector('#nombre').value = odontologo.nombre;

@@ -37,3 +37,17 @@ body {
 #div_odontologo_table {
   width: var(--bs-breakpoint-lg);
 }
+/* CSS para el listado de Pacientes */
+#div_paciente_table {
+  width: var(--bs-breakpoint-lg);
+}
+#add_new_paciente {
+  width: var(--bs-breakpoint-lg);
+}
+#info_domicilio {
+  border : solid 1px lightgray;
+  border-radius: 20px;
+  padding: 10px;
+  margin: 15px;
+  background-color: linen;
+}

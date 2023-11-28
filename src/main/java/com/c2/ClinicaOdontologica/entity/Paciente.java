@@ -140,7 +140,7 @@ public class Paciente {
         ", cedula='" + cedula + '\'' +
         ", fechaIngreso=" + fechaIngreso +
         ", domicilio=" + domicilio +
-        ", Email =" + email +
+        ", email =" + email +
         '}'
     );
   }
