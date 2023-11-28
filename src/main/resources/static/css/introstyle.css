@@ -1,39 +1,39 @@
-  body {
-    background-color: linen;
-  }
+body {
+  background-color: linen;
+}
 /* CSS para el logo */
-  .containerLogo {
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
+.containerLogo {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 
-  .image {
-    width: 50%;
-    max-width: 500px;
-  }
+.image {
+  width: 50%;
+  max-width: 500px;
+}
 
-  /* CSS para el Formulario de Odontologos */
-  .containerForm {
-    background-color: lavender;
-    padding: 40px;
-    border-radius: 12px;
-    width: max-content;
-  }
-  #add_new_odontologo {
-    width: var(--bs-breakpoint-lg);
-  }
-  .containerButtonRight {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
-  .button_submit {
-    margin:20px;
-  }
+/* CSS para el Formulario de Odontologos */
+.containerForm {
+  background-color: lavender;
+  padding: 40px;
+  border-radius: 12px;
+  width: max-content;
+}
+#add_new_odontologo {
+  width: var(--bs-breakpoint-lg);
+}
+.containerButtonRight {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.button_submit {
+  margin: 20px;
+}
 
-  /* CSS para el listado de Odontologos */
-  #div_odontologo_table {
-    width: var(--bs-breakpoint-lg);
-  }
+/* CSS para el listado de Odontologos */
+#div_odontologo_table {
+  width: var(--bs-breakpoint-lg);
+}

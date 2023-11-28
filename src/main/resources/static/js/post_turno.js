@@ -1,11 +1,11 @@
 window.addEventListener('load', function () {
   //Al cargar la pagina buscamos y obtenemos el formulario donde estarán
   //los datos que el usuario cargará de la nueva pelicula
-  const formulario = document.querySelector('#add_new_odontologo');
+  const formulario = document.querySelector('#add_new_turno');
 
   //Ante un submit del formulario se ejecutará la siguiente funcion
   formulario.addEventListener('submit', function (event) {
-    //creamos un JSON que tendrá los datos del formulario para insertar odontologo
+    //creamos un JSON que tendrá los datos del formulario para insertar turno
     const formData = {
       matricula: document.querySelector('#matricula').value,
       nombre: document.querySelector('#nombre').value,
@@ -13,7 +13,7 @@ window.addEventListener('load', function () {
     };
     //invocamos utilizando la función fetch la API peliculas con el método POST que guardará
     //la película que enviaremos en formato JSON
-    const url = '/odontologo';
+    const url = '/turno';
     const settings = {
       method: 'POST',
       headers: {
@@ -25,7 +25,7 @@ window.addEventListener('load', function () {
     fetch(url, settings)
       .then((response) => response.json())
       .then((data) => {
-        //Si no hay ningun error se muestra un mensaje diciendo que el odontologo fue agregado
+        //Si no hay ningun error se muestra un mensaje diciendo que el turno fue agregado
         //se agrego bien
         let successAlert =
           '<div class="alert alert-success alert-dismissible">' +

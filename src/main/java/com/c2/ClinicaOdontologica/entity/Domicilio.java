@@ -77,12 +77,13 @@ public class Domicilio {
 
     @Override
     public String toString() {
-        return "Domicilio{" +
-                "id=" + id +
-                ", calle='" + calle + '\'' +
-                ", numero=" + numero +
-                ", localidad='" + localidad + '\'' +
-                ", provincia='" + provincia + '\'' +
-                '}';
+      return "Domicilio{" +
+        "id=" + id +
+        ", calle='" + calle + '\'' +
+        ", numero=" + numero +
+        ", localidad='" + localidad + '\'' +
+        ", provincia='" + provincia + '\'' +
+        '}';
     }
+
 }

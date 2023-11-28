@@ -1,41 +1,46 @@
 package com.c2.ClinicaOdontologica.entity;
 
-import lombok.Data;
-
-import javax.persistence.*;
 import java.time.LocalDate;
+import javax.persistence.*;
+import lombok.Data;
 
 @Entity
 @Data
 @Table(name = "turnos")
 public class Turno {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @ManyToOne
-    @JoinColumn(name = "paciente_id", referencedColumnName = "id")
-    private Paciente paciente;
-    @ManyToOne
-    @JoinColumn(name = "odontologo_id", referencedColumnName = "id")
 
-    private Odontologo odontologo;
-    @Column
-    private LocalDate fechaTurno;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    public Turno() {
-    }
+  @ManyToOne
+  @JoinColumn(name = "paciente_id", referencedColumnName = "id")
+  private Paciente paciente;
 
-    public Turno(Long id, Paciente paciente, Odontologo odontologo, LocalDate fechaTurno) {
-        this.id = id;
-        this.paciente = paciente;
-        this.odontologo = odontologo;
-        this.fechaTurno = fechaTurno;
-    }
+  @ManyToOne
+  @JoinColumn(name = "odontologo_id", referencedColumnName = "id")
+  private Odontologo odontologo;
 
-    public Turno(Paciente paciente, Odontologo odontologo, LocalDate fechaTurno) {
-        this.paciente = paciente;
-        this.odontologo = odontologo;
-        this.fechaTurno = fechaTurno;
-    }
+  @Column
+  private LocalDate fechaTurno;
 
+  public Turno() {}
+
+  public Turno(
+    Long id,
+    Paciente paciente,
+    Odontologo odontologo,
+    LocalDate fechaTurno
+  ) {
+    this.id = id;
+    this.paciente = paciente;
+    this.odontologo = odontologo;
+    this.fechaTurno = fechaTurno;
+  }
+
+  public Turno(Paciente paciente, Odontologo odontologo, LocalDate fechaTurno) {
+    this.paciente = paciente;
+    this.odontologo = odontologo;
+    this.fechaTurno = fechaTurno;
+  }
 }

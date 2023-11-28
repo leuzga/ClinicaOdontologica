@@ -1,7 +1,7 @@
 window.addEventListener('load', function () {
   //Buscamos y obtenemos el formulario donde estan
   //los datos que el usuario pudo haber modificado de la pelicula
-  const formulario = document.querySelector('#update_odontologo_form');
+  const formulario = document.querySelector('#update_paciente_form');
 
   formulario.addEventListener('submit', function (event) {
     let odontologoId = document.querySelector('#odontologo_id').value;

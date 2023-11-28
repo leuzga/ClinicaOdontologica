@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
-    <title>Odontologo</title>
+    <title>Paciente</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
@@ -52,11 +52,11 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Odontologo
+                Paciente
               </a>
               <ul class="dropdown-menu">
                 <li>
-                  <a class="dropdown-item" href="post_odontologos.html">Alta</a>
+                  <a class="dropdown-item" href="post_pacientes.html">Alta</a>
                 </li>
               </ul>
             </li>
@@ -66,14 +66,14 @@
     </nav>
     <div class="containerLogo">
       <div class="containerForm">
-        <div id="div_odontologo_table">
-          <span><h1>Listado de Odontologos</h1></span>
+        <div id="div_paciente_table">
+          <span><h1>Listado de Pacientes</h1></span>
           <span>
             <div class="containerButtonRight">
               <button
-                id="btn_id_${odontologo.id}"
+                id="btn_id_${paciente.id}"
                 type="button"
-                onclick="window.location.href = 'post_odontologos.html'"
+                onclick="window.location.href = 'post_pacientes.html'"
                 class="btn btn-success btn_id"
               >
                 <svg
@@ -96,39 +96,33 @@
           ></span>
 
           <div class="">
-            <table id="odontologoTable" class="table table-striped">
+            <table id="pacienteTable" class="table table-striped">
               <thead>
                 <tr>
                   <th>Id</th>
-                  <th>Matricula</th>
                   <th>Nombre</th>
                   <th>Apellido</th>
+                  <th>Cédula</th>
+                  <th>Fecha Ingreso</th>
+                  <th>Domicilio</th>
+                  <th>Email</th>
                   <th>Acciónes</th>
                 </tr>
               </thead>
-              <tbody id="odontologoTableBody"></tbody>
+              <tbody id="pacienteTableBody"></tbody>
             </table>
           </div>
         </div>
         <div class="row">
-          <div id="div_odontologo_updating">
-            <form id="update_odontologo_form">
+          <div id="div_paciente_updating">
+            <form id="update_paciente_form">
               <div class="form-group">
                 <label>Id:</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="odontologo_id"
+                  id="paciente_id"
                   readonly
-                />
-              </div>
-              <div class="form-group">
-                <label>Matricula:</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="matricula"
-                  id="matricula"
                 />
               </div>
               <div class="form-group">
@@ -149,6 +143,42 @@
                   id="apellido"
                 />
               </div>
+              <div class="form-group">
+                <label>Cédula</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="cédula"
+                  id="cedula"
+                />
+              </div>
+              <div class="form-group">
+                <label>Fecha Ingreso</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="fechaIngreso"
+                  id="fechaIngreso"
+                />
+              </div>
+              <div class="form-group">
+                <label>Domicilio</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="domicilio"
+                  id="domicilio"
+                />
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="email"
+                  id="Email"
+                />
+              </div>
               <div class="containerButtonRight">
                 <button type="submit" class="btn btn-primary button_submit">
                   Modificar
@@ -163,7 +193,7 @@
     </div>
     <script>
       const isShow = JSON.parse(localStorage.getItem('isShow'));
-      const div_edicion = document.getElementById('div_odontologo_updating');
+      const div_edicion = document.getElementById('div_paciente_updating');
 
       if (isShow) {
         div_edicion.style.display = 'block';
@@ -176,7 +206,7 @@
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"
     ></script>
-    <script type="text/javascript" src="/js/get_odontologo.js"></script>
-    <script type="text/javascript" src="/js/put_odontologo.js"></script>
+    <script type="text/javascript" src="/js/get_paciente.js"></script>
+    <script type="text/javascript" src="/js/put_paciente.js"></script>
   </body>
 </html>
