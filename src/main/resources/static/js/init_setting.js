@@ -1,2 +1,2 @@
-let isShowOdontologo = false;
-localStorage.setItem('isShowOdontologo', JSON.stringify(isShowOdontologo));
+let isShow = false;
+localStorage.setItem('isShow', JSON.stringify(isShow));

@@ -161,10 +161,10 @@
       </div>
     </div>
     <script>
-      const isShowOdontologo = JSON.parse(localStorage.getItem('isShowOdontologo'));
+      const isShow = JSON.parse(localStorage.getItem('isShow'));
       const div_edicion = document.getElementById('div_odontologo_updating');
 
-      if (isShowOdontologo) {
+      if (isShow) {
         div_edicion.style.display = 'block';
       } else {
         div_edicion.style.display = 'none';

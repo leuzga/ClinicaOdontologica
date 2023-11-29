@@ -1,7 +1,14 @@
+function getDomicilio(calle, numero, localidad, provincia) {
+  //console.log(JSON.stringify(objDomicilio.find(obj => obj.id === id),2,null));
+  console.dir(calle, numero, localidad, provincia);
+}
 window.addEventListener('load', function () {
   (function () {
+
+    //recorremos la colección de los pacientes
     //con fetch invocamos a la API de peliculas con el método GET
-    //nos devolverá un JSON con una colección de peliculas
+    //nos devolverá un JSON con una colección de pacientes con sus domicilios
+
     const url = '/paciente' + '/todos';
     const settings = {
       method: 'GET',
@@ -10,16 +17,16 @@ window.addEventListener('load', function () {
     fetch(url, settings)
       .then((response) => response.json())
       .then((data) => {
-        //recorremos la colección de peliculas del JSON
+        //recorremos la colección de pacientes del JSON
         for (paciente of data) {
-          //por cada pelicula armaremos una fila de la tabla
-          //cada fila tendrá un id que luego nos permitirá borrar la fila si eliminamos la pelicula
+          //por cada paciente armaremos una fila de la tabla
+          //cada fila tendrá un id que luego nos permitirá borrar la fila si eliminamos el paciente
           var table = document.getElementById('pacienteTable');
           var pacienteRow = table.insertRow();
           let tr_id = 'tr_' + paciente.id;
           pacienteRow.id = tr_id;
 
-          //por cada pelicula creamos un boton delete que agregaremos en cada fila para poder eliminar la misma
+          //por cada paciente creamos un boton delete que agregaremos en cada fila para poder eliminar
           //dicho boton invocara a la funcion de java script deleteByKey que se encargará
           //de llamar a la API para eliminar una pelicula
           let deleteButton = `
@@ -30,9 +37,9 @@ window.addEventListener('load', function () {
               </button>
             `;
 
-          //por cada pelicula creamos un boton que muestra el id y que al hacerle clic invocará
-          //a la función de java script findBy que se encargará de buscar la pelicula que queremos
-          //modificar y mostrar los datos de la misma en un formulario.
+          //por cada paciente creamos un boton que muestra el id y que al hacerle clic invocará
+          //a la función de java script findBy que se encargará de buscar al paciente que queremos
+          //modificar y mostrar los datos del mismo en un formulario.
           let updateButton = `
               <button id="btn_id_${paciente.id}" type="button" onclick="findBy(${paciente.id})" class="btn btn-info btn_id">
                 ${paciente.id}
@@ -47,6 +54,8 @@ window.addEventListener('load', function () {
               </button>
             `;
 
+          let domicilioRow = data.filter(obj => obj.id === paciente.id).map(obj => obj.domicilio)[0];
+          console.log(JSON.stringify(domicilioRow,2,null));
           //armamos cada columna de la fila
           //como primer columna pondremos el boton modificar
           //luego los datos de la paciente
@@ -68,7 +77,11 @@ window.addEventListener('load', function () {
             paciente.fechaIngreso.toUpperCase() +
             '</td>' +
             '<td class="td_domicilio">' +
-            paciente.domicilio.id.toUpperCase() +
+              `<button type="button" class="btn btn-outline-success" onclick="getDomicilio('${domicilioRow.calle}, ${domicilioRow.numero}, ${domicilioRow.localidad}, ${domicilioRow.provincia}')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-ul" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+                </svg>
+              </button>` +
             '</td>' +
             '<td class="td_email">' +
             paciente.email.toUpperCase() +
@@ -81,7 +94,7 @@ window.addEventListener('load', function () {
       });
   })(function () {
     let pathname = window.location.pathname;
-    if (pathname == '/peliculaList.html') {
+    if (pathname == '/index.html') {
       document.querySelector('.nav .nav-item a:last').addClass('active');
     }
   });
