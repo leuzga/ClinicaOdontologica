@@ -5,6 +5,7 @@ import com.c2.ClinicaOdontologica.repository.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +15,7 @@ public class PacienteService {
     private PacienteRepository pacienteRepository;
 
     public Paciente registrarPaciente(Paciente paciente){
+        paciente.setFechaIngreso(LocalDate.now());
         return  pacienteRepository.save(paciente);
     }
     public void actualizarPaciente(Paciente paciente){
