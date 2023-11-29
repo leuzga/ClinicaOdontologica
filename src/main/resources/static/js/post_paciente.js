@@ -10,9 +10,8 @@ window.addEventListener('load', function () {
       nombre: document.querySelector('#nombre').value,
       apellido: document.querySelector('#apellido').value,
       cedula: document.querySelector('#cedula').value,
-      fechaIngreso: document.querySelector('#fechaIngreso').value,
       domicilio: {
-        casa: document.querySelector('#casa').value,
+        calle: document.querySelector('#calle').value,
         numero: document.querySelector('#numero').value,
         localidad: document.querySelector('#localidad').value,
         provincia: document.querySelector('#provincia').value,

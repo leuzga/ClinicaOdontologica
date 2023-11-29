@@ -1,8 +1,11 @@
 package com.c2.ClinicaOdontologica.controller;
 
+import com.c2.ClinicaOdontologica.entity.Odontologo;
 import com.c2.ClinicaOdontologica.entity.Paciente;
 import com.c2.ClinicaOdontologica.exception.ResorceNotFoundException;
 import com.c2.ClinicaOdontologica.service.PacienteService;
+
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -57,6 +60,10 @@ public class PacienteController {
     } else {
       return ResponseEntity.notFound().build();
     }
+  }
+  @GetMapping("/todos")
+  public ResponseEntity<List<Paciente>> buscarTodos() {
+    return ResponseEntity.ok(pacienteService.listarTodos());
   }
 
   @DeleteMapping("{id}")
