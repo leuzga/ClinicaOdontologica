@@ -1,10 +1,11 @@
-function getDomicilio(calle, numero, localidad, provincia) {
-  //console.log(JSON.stringify(objDomicilio.find(obj => obj.id === id),2,null));
-  console.dir(calle, numero, localidad, provincia);
+function showDomicilio(id) {
+  let elemento = document.getElementById(`row_dom_${id}`);
+  elemento.style.display = elemento.style.display === 'none' ? 'table-row' : 'none';
 }
 window.addEventListener('load', function () {
+  let isShowDomicilio = JSON.parse(localStorage.getItem('showDomicilio'));
+  console.log(isShowDomicilio);
   (function () {
-
     //recorremos la colección de los pacientes
     //con fetch invocamos a la API de peliculas con el método GET
     //nos devolverá un JSON con una colección de pacientes con sus domicilios
@@ -18,14 +19,16 @@ window.addEventListener('load', function () {
       .then((response) => response.json())
       .then((data) => {
         //recorremos la colección de pacientes del JSON
+        //para mostrarlos en el listado
         for (paciente of data) {
           //por cada paciente armaremos una fila de la tabla
           //cada fila tendrá un id que luego nos permitirá borrar la fila si eliminamos el paciente
           var table = document.getElementById('pacienteTable');
           var pacienteRow = table.insertRow();
+          var domicilioRow = table.insertRow();
           let tr_id = 'tr_' + paciente.id;
           pacienteRow.id = tr_id;
-
+          domicilioRow.id = 'row_dom_' + paciente.id;
           //por cada paciente creamos un boton delete que agregaremos en cada fila para poder eliminar
           //dicho boton invocara a la funcion de java script deleteByKey que se encargará
           //de llamar a la API para eliminar una pelicula
@@ -54,8 +57,14 @@ window.addEventListener('load', function () {
               </button>
             `;
 
-          let domicilioRow = data.filter(obj => obj.id === paciente.id).map(obj => obj.domicilio)[0];
-          console.log(JSON.stringify(domicilioRow,2,null));
+          let domicilioData = data.filter(obj => obj.id === paciente.id).map(obj => obj.domicilio)[0];
+          domicilioRow.classList.add('containerDomicilio');
+
+          let domicilios = document.querySelectorAll('.containerDomicilio');
+          domicilios.forEach(domicilio => {
+            domicilio.style.display = 'none';
+          });
+
           //armamos cada columna de la fila
           //como primer columna pondremos el boton modificar
           //luego los datos de la paciente
@@ -77,7 +86,7 @@ window.addEventListener('load', function () {
             paciente.fechaIngreso.toUpperCase() +
             '</td>' +
             '<td class="td_domicilio">' +
-              `<button type="button" class="btn btn-outline-success" onclick="getDomicilio('${domicilioRow.calle}, ${domicilioRow.numero}, ${domicilioRow.localidad}, ${domicilioRow.provincia}')">
+              `<button type="button" class="btn btn-outline-success" onclick="showDomicilio(${domicilioData.id})">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-ul" viewBox="0 0 16 16">
                   <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
                 </svg>
@@ -90,6 +99,17 @@ window.addEventListener('load', function () {
             deleteButton +
             updateActionButton +
             '</td>';
+
+            domicilioRow.innerHTML = `
+            <td></td>
+            <td><i class="td_title_domicilio">Domicilio:</i> </td>
+            <td class="td_id">${domicilioData.id}</td>
+            <td class="td_calle">${domicilioData.calle}</td>
+            <td class="td_numero">${domicilioData.numero}</td>
+            <td class="td_localidad">${domicilioData.localidad}</td>
+            <td class="td_provincia">${domicilioData.provincia}</td>
+            <td></td>
+           `;
         }
       });
   })(function () {

@@ -57,3 +57,18 @@ function findBy(id) {
       alert('Error: ' + error);
     });
 }
+function deleteBy(id) {
+  const url = '/odontologo' + '/' + id;
+  const settings = {
+    method: 'DELETE',
+  };
+  fetch(url, settings)
+    .then((response) => {
+    response.json();
+    window.location.href = './get_odontologos.html'
+  })
+
+    .catch((error) => {
+    alert('Mensaje de la Operacion: ' + error.message);
+  });
+}

@@ -71,3 +71,20 @@ function findBy(id) {
       alert('Error: ' + error);
     });
 }
+
+function deleteBy(id) {
+  const url = '/paciente' + '/' + id;
+  const settings = {
+    method: 'DELETE',
+  };
+  fetch(url, settings)
+    .then((response) => {
+    response.json();
+    window.location.href = './get_pacientes.html'
+  })
+
+    .catch((error) => {
+    alert('Mensaje de la Operacion: ' + error.message);
+  });
+}
+

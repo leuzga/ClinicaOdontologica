@@ -28,6 +28,7 @@ body {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  margin-right: 10px;
 }
 .button_submit {
   margin: 20px;
@@ -36,10 +37,14 @@ body {
 /* CSS para el listado de Odontologos */
 #div_odontologo_table {
   width: var(--bs-breakpoint-lg);
+  background-color: white;
+  padding: 10px;
 }
 /* CSS para el listado de Pacientes */
 #div_paciente_table {
+  background-color: white;
   width: var(--bs-breakpoint-lg);
+  padding: 15px;
 }
 #add_new_paciente {
   width: var(--bs-breakpoint-lg);
@@ -50,4 +55,13 @@ body {
   padding: 10px;
   margin: 15px;
   background-color: linen;
+}
+/* CSS para el listado de domicilios */
+.containerDomicilio {
+  border-radius: 20px;
+  width: 100%;
+}
+.td_title_domicilio {
+  font-weight: bold;
+  color: darkslateblue;
 }
