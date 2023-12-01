@@ -4,7 +4,7 @@ function showDomicilio(id) {
 }
 window.addEventListener('load', function () {
   let isShowDomicilio = JSON.parse(localStorage.getItem('showDomicilio'));
-  console.log(isShowDomicilio);
+
   (function () {
     //recorremos la colección de los pacientes
     //con fetch invocamos a la API de peliculas con el método GET

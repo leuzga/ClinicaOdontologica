@@ -21,11 +21,11 @@ public class DatosInicialesSecurity implements ApplicationRunner {
         //crear un usuario como si fuese real
 
         BCryptPasswordEncoder cifrador= new BCryptPasswordEncoder();
-        String passSinCifrar= "digital";
+        String passSinCifrar= "leuzga";
         String passCifrado= cifrador.encode(passSinCifrar);
         System.out.println("password: "+passCifrado);
-        Usuario usuarioInsertar= new Usuario("Jorgito","jpereyra00","jorge.pereyra@digitalhouse.com",passCifrado, UsuarioRole.ROLE_ADMIN);
-        usuarioRepository.save(usuarioInsertar);
+/*        Usuario usuarioInsertar= new Usuario("Lenin","leuzga","leuzga@gmail.com",passCifrado, UsuarioRole.ROLE_ADMIN);
+        usuarioRepository.save(usuarioInsertar);*/
 
     }
 }

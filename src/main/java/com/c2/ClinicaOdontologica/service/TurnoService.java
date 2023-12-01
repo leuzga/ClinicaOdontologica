@@ -51,6 +51,7 @@ public class TurnoService {
         respuesta.setPacienteId(turno.getPaciente().getId());
         respuesta.setOdontologoId(turno.getOdontologo().getId());
         respuesta.setFechaTurno(turno.getFechaTurno());
+        respuesta.setHoraTurno(turno.getHoraTurno());
         return  respuesta;
     }
 private Turno turnoDTOaTurno(TurnoDTO turnoDTO){

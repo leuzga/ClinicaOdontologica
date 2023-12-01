@@ -1,7 +1,25 @@
 window.addEventListener('load', function () {
   //Al cargar la pagina buscamos y obtenemos el formulario donde estarán
-  //los datos que el usuario cargará de la nueva pelicula
+  //los datos que el usuario cargará los turnos disponibles
+  const disponibilidad = window.generarObjetoAsignaciones();
+  let turnosDisponibles  = window.filtrarAsignaciones(fechasHoras = [],disponibilidad);
+  const selectTurno = document.querySelector('#fechaTurno')
+  turnosDisponibles.forEach((fecha) => {
+    const option = document.createElement('option');
+    option.value = fecha.fecha;
+    option.text = fecha.fecha;
+    selectTurno.add(option);
+  });
+
+  const selectHora = document.querySelector('#horaTurno')
+  turnosDisponibles.forEach((hora) => {
+    const option = document.createElement('option');
+    option.value = hora;
+    option.text = hora;
+    selectHora.add(option);
+  })
   const formulario = document.querySelector('#add_new_turno');
+
 
   //Ante un submit del formulario se ejecutará la siguiente funcion
   formulario.addEventListener('submit', function (event) {
