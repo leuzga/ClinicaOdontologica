@@ -1,7 +1,5 @@
 package com.c2.ClinicaOdontologica.controller;
 
-import com.c2.ClinicaOdontologica.dto.EmailDTO;
-import com.c2.ClinicaOdontologica.entity.Odontologo;
 import com.c2.ClinicaOdontologica.entity.Paciente;
 import com.c2.ClinicaOdontologica.exception.ResorceNotFoundException;
 import com.c2.ClinicaOdontologica.service.PacienteService;
@@ -9,10 +7,8 @@ import com.c2.ClinicaOdontologica.service.PacienteService;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -53,10 +49,10 @@ public class PacienteController {
 
   @GetMapping(path="/email", consumes= MediaType.APPLICATION_JSON_VALUE , produces=MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Paciente> buscarPacientePorCorreo(
-    @RequestBody EmailDTO email
+    @RequestParam String email
   ) {
     Optional<Paciente> pacienteBuscado =
-            pacienteService.buscarPorCorreo(email.getPacienteEmail());
+            pacienteService.buscarPorCorreo(email);
     if (pacienteBuscado.isPresent()) {
       return ResponseEntity.ok(pacienteBuscado.get());
     } else {
