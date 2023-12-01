@@ -2,7 +2,13 @@ window.addEventListener('load', function () {
   //Al cargar la pagina buscamos y obtenemos el formulario donde estarán
   //los datos que el usuario cargará los turnos disponibles
   const disponibilidad = window.generarObjetoAsignaciones();
-  let turnosDisponibles  = window.filtrarAsignaciones(fechasHoras = [],disponibilidad);
+  let fechasHoras = [
+    { fecha: '2023-12-01', hora: '07:00' },
+    { fecha: '2023-12-03', hora: '08:00' },
+    { fecha: '2023-12-05', hora: '09:00' },
+  ];
+
+  let turnosDisponibles  = window.filtrarAsignaciones(fechasHoras,disponibilidad);
   const selectTurno = document.querySelector('#fechaTurno')
   turnosDisponibles.forEach((fecha) => {
     const option = document.createElement('option');
@@ -11,13 +17,29 @@ window.addEventListener('load', function () {
     selectTurno.add(option);
   });
 
-  const selectHora = document.querySelector('#horaTurno')
-  turnosDisponibles.forEach((hora) => {
-    const option = document.createElement('option');
-    option.value = hora;
-    option.text = hora;
-    selectHora.add(option);
-  })
+  window.actualizarHoras = function() {
+    const fechaSeleccionada = document.getElementById('fechaTurno').value;
+    const selectHoras = document.getElementById('horaTurno');
+
+    // Encuentra el objeto correspondiente a la fecha seleccionada
+    const objetoFecha = turnosDisponibles.find(obj => obj.fecha === fechaSeleccionada);
+
+    // Limpia las opciones actuales
+    selectHoras.innerHTML = '';
+
+    // Llena el select con las horas correspondientes al objeto de fecha
+    if (objetoFecha) {
+      objetoFecha.horas.forEach(hora => {
+        const opcion = document.createElement('option');
+        opcion.value = hora;
+        opcion.textContent = hora;
+        selectHoras.appendChild(opcion);
+      });
+    }
+  }
+
+
+
   const formulario = document.querySelector('#add_new_turno');
 
 

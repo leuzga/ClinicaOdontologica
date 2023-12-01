@@ -68,23 +68,3 @@ window.filtrarAsignaciones = function(fechasHoras, arregloOriginal) {
   return resultado;
 }
 
-window.actualizarHoras = function() {
-  const fechaSeleccionada = document.getElementById('fechaTurno').value;
-  const selectHoras = document.getElementById('horaTurno');
-
-  // Encuentra el objeto correspondiente a la fecha seleccionada
-  const objetoFecha = arregloDeFechas.find(obj => obj.fecha === fechaSeleccionada);
-
-  // Limpia las opciones actuales
-  selectHoras.innerHTML = '';
-
-  // Llena el select con las horas correspondientes al objeto de fecha
-  if (objetoFecha) {
-    objetoFecha.horas.forEach(hora => {
-      const opcion = document.createElement('option');
-      opcion.value = hora;
-      opcion.textContent = hora;
-      selectHoras.appendChild(opcion);
-    });
-  }
-}
