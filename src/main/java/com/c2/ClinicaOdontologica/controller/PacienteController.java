@@ -1,5 +1,6 @@
 package com.c2.ClinicaOdontologica.controller;
 
+import com.c2.ClinicaOdontologica.dto.EmailDTO;
 import com.c2.ClinicaOdontologica.entity.Odontologo;
 import com.c2.ClinicaOdontologica.entity.Paciente;
 import com.c2.ClinicaOdontologica.exception.ResorceNotFoundException;
@@ -8,6 +9,8 @@ import com.c2.ClinicaOdontologica.service.PacienteService;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -48,13 +51,12 @@ public class PacienteController {
     }
   }
 
-  @GetMapping("/buscar/{email}")
+  @GetMapping(path="/email", consumes= MediaType.APPLICATION_JSON_VALUE , produces=MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Paciente> buscarPacientePorCorreo(
-    @PathVariable String correo
+    @RequestBody EmailDTO email
   ) {
-    Optional<Paciente> pacienteBuscado = pacienteService.buscarPorCorreo(
-      correo
-    );
+    Optional<Paciente> pacienteBuscado =
+            pacienteService.buscarPorCorreo(email.getPacienteEmail());
     if (pacienteBuscado.isPresent()) {
       return ResponseEntity.ok(pacienteBuscado.get());
     } else {
@@ -67,7 +69,7 @@ public class PacienteController {
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<String> elimninarPaciente(@PathVariable Long id)
+  public ResponseEntity<String> eliminarPaciente(@PathVariable Long id)
     throws ResorceNotFoundException {
     Optional<Paciente> pacienteBuscado = pacienteService.buscarPacientePorID(
       id
