@@ -38,10 +38,49 @@ window.addEventListener('load', function () {
     }
   }
 
+  const url = '/odontologo' + '/todos';
+  const settings = {
+    method: 'GET',
+  };
+  fetch(url, settings)
+    .then((response) => response.json())
+    .then((data) => {
 
+      data.forEach((odontologo) => {
+        const option = document.createElement('option');
+        option.value = odontologo.matricula;
+        option.text =  odontologo.nombre + ' ' + odontologo.apellido;
+        odontologosTurno.add(option);
+      })})
+    .catch((error) => {
+      console.log('Error: ' + error);
+    });
+  let emailPaciente = document.querySelector('#userEmail');
+
+  window.findByEmail =function()  {
+
+    const url = '/paciente/email/'+encodeURIComponent(emailPaciente.value);
+    console.log(url);
+    const settings = {
+      method: 'GET',
+    };
+
+    fetch(url, settings)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(JSON.stringify(data, null, 2));
+        document.querySelector('#nombre').value = data.nombre;
+        document.querySelector('#apellido').value = data.apellido;
+        document.querySelector('#cedula').value = data.cedula;
+        document.querySelector('#email').value = data.email;
+      })
+      .catch((error) => {
+        console.log('Error: ' + error);
+      });
+      document.querySelector('#userEmail').value = '';
+  }
 
   const formulario = document.querySelector('#add_new_turno');
-
 
   //Ante un submit del formulario se ejecutará la siguiente funcion
   formulario.addEventListener('submit', function (event) {

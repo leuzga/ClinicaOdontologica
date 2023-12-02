@@ -47,9 +47,9 @@ public class PacienteController {
     }
   }
 
-  @GetMapping(path="/email", consumes= MediaType.APPLICATION_JSON_VALUE , produces=MediaType.APPLICATION_JSON_VALUE)
+  @GetMapping(path="/email/{email}", produces=MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Paciente> buscarPacientePorCorreo(
-    @RequestParam String email
+    @PathVariable String email
   ) {
     Optional<Paciente> pacienteBuscado =
             pacienteService.buscarPorCorreo(email);

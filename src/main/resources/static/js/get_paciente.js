@@ -1,7 +1,3 @@
-function showDomicilio(id) {
-  let elemento = document.getElementById(`row_dom_${id}`);
-  elemento.style.display = elemento.style.display === 'none' ? 'table-row' : 'none';
-}
 window.addEventListener('load', function () {
   let isShowDomicilio = JSON.parse(localStorage.getItem('showDomicilio'));
 
@@ -29,6 +25,7 @@ window.addEventListener('load', function () {
           let tr_id = 'tr_' + paciente.id;
           pacienteRow.id = tr_id;
           domicilioRow.id = 'row_dom_' + paciente.id;
+          domicilioRow.classList.add('collapse');
           //por cada paciente creamos un boton delete que agregaremos en cada fila para poder eliminar
           //dicho boton invocara a la funcion de java script deleteByKey que se encargará
           //de llamar a la API para eliminar una pelicula
@@ -58,12 +55,6 @@ window.addEventListener('load', function () {
             `;
 
           let domicilioData = data.filter(obj => obj.id === paciente.id).map(obj => obj.domicilio)[0];
-          domicilioRow.classList.add('containerDomicilio');
-
-          let domicilios = document.querySelectorAll('.containerDomicilio');
-          domicilios.forEach(domicilio => {
-            domicilio.style.display = 'none';
-          });
 
           //armamos cada columna de la fila
           //como primer columna pondremos el boton modificar
@@ -86,7 +77,7 @@ window.addEventListener('load', function () {
             paciente.fechaIngreso.toUpperCase() +
             '</td>' +
             '<td class="td_domicilio">' +
-              `<button type="button" class="btn btn-outline-success" onclick="showDomicilio(${domicilioData.id})">
+              `<button type="button" id="btn_domicilio" class="btn btn-outline-success "  data-bs-toggle="collapse" data-bs-target="#row_dom_${paciente.id}" aria-expanded="false">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-ul" viewBox="0 0 16 16">
                   <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
                 </svg>

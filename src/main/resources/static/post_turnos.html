@@ -59,13 +59,13 @@
         <label class="control-label" for="userEmail">Email de usuario:</label>
         <div class="input-group mb-3">
           <input type="text" id="userEmail" name="userEmail" class="form-control" placeholder="Ingrese el email de usuario"  aria-describedby="email de usuario" required></input>
-          <button class="btn btn-primary" type="button" id="button-search">
+          <button class="btn btn-primary" type="button" onclick="window.findByEmail()" id="button-search" data-bs-toggle="collapse" data-bs-target="#info_paciente" aria-expanded="false" >
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
               <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
             </svg>
           </button>
         </div>
-        <div  class="parent_group">
+        <div id="info_paciente" class="collapse">
           <div class="flex-container">
             <!-- Primera Fila -->
             <div class="flex-row">
@@ -105,12 +105,9 @@
           </div>
         </div>
 
-        <label class="control-label" for="odontologoSelected_Id">Odontologos:</label>
-        <select id="odontologoSelected_Id" class="form-select" aria-label="Seleccion de la lista de odontologos">
+        <label class="control-label" for="odontologosTurno">Odontologos:</label>
+        <select id="odontologosTurno" class="form-select" aria-label="Seleccion de la lista de odontologos">
           <option selected>Seleccione un Odontologo</option>
-          <option value="1">Pablo Perez</option>
-          <option value="2">Juan Alvarez</option>
-          <option value="3">Jose Maria Yepez</option>
         </select>
         <div  class="parent_group">
           <div class="flex-container">

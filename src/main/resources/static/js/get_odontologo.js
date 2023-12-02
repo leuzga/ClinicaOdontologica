@@ -72,7 +72,7 @@ window.addEventListener('load', function () {
       });
   })(function () {
     let pathname = window.location.pathname;
-    if (pathname == '/peliculaList.html') {
+    if (pathname == '/index.html') {
       document.querySelector('.nav .nav-item a:last').addClass('active');
     }
   });
