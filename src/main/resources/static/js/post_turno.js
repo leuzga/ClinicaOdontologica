@@ -3,35 +3,46 @@ window.addEventListener('load', function () {
   //los datos que el usuario cargará los turnos disponibles
   const disponibilidad = window.generarObjetoAsignaciones();
   let pacienteId = 0;
-  //Temporalmente cargamos los turnos mientras esta el servicio
-  let fechasHoras = [
-    { fecha: '2023-12-01', hora: '07:00' },
-    { fecha: '2023-12-03', hora: '08:00' },
-    { fecha: '2023-12-05', hora: '09:00' },
-  ];
+  let turnosDisponibles = [];
 
-  let turnosDisponibles  = window.filtrarAsignaciones(fechasHoras,disponibilidad);
-  const selectTurno = document.querySelector('#fechaTurno')
-  turnosDisponibles.forEach((fecha) => {
-    const option = document.createElement('option');
-    option.value = fecha.fecha;
-    option.text = fecha.fecha;
-    selectTurno.add(option);
-  });
+  // Busqueda de los turnos por id odontologo
+  window.findByOdontologoId = function()  {
+    let odontologoTurnoSelected = document.querySelector('#odontologosTurno').value;
+    const url = `/turno/odontologo/${odontologoTurnoSelected}`;
+    const settings = {
+      method: 'GET',
+    };
+    fetch(url, settings)
+      .then((response) => response.json())
+      .then((data) => {
+      turnosDisponibles = window.filtrarAsignaciones(data,disponibilidad);
+      const selectTurno = document.querySelector('#fechaTurno')
+      turnosDisponibles.forEach((fecha) => {
+        const option = document.createElement('option');
+        option.value = fecha.fechaTurno;
+        option.text = fecha.fechaTurno;
+        selectTurno.add(option);
+      });
+    })
+      .catch((error) => {
+      console.log('Error: ' + error);
+    });
+  }
+
 
   window.actualizarHoras = function() {
     const fechaSeleccionada = document.getElementById('fechaTurno').value;
     const selectHoras = document.getElementById('horaTurno');
 
     // Encuentra el objeto correspondiente a la fecha seleccionada
-    const objetoFecha = turnosDisponibles.find(obj => obj.fecha === fechaSeleccionada);
-
+    const objetoFecha = turnosDisponibles.find(obj => obj.fechaTurno === fechaSeleccionada);
+    console.log(objetoFecha);
     // Limpia las opciones actuales
     selectHoras.innerHTML = '';
 
     // Llena el select con las horas correspondientes al objeto de fecha
     if (objetoFecha) {
-      objetoFecha.horas.forEach(hora => {
+      objetoFecha.horaTurno.forEach(hora => {
         const opcion = document.createElement('option');
         opcion.value = hora;
         opcion.textContent = hora;
@@ -59,9 +70,7 @@ window.addEventListener('load', function () {
     });
   let emailPaciente = document.querySelector('#userEmail');
 
-
-  window.findByEmail =function()  {
-
+  window.findByEmail = function()  {
     const url = '/paciente/email/'+encodeURIComponent(emailPaciente.value);
     console.log(url);
     const settings = {
@@ -98,7 +107,7 @@ window.addEventListener('load', function () {
 
     //invocamos utilizando la función fetch la API peliculas con el método POST que guardará
     //la película que enviaremos en formato JSON
-    const url = '/turnos';
+    const url = '/turno';
     const settings = {
       method: 'POST',
       headers: {

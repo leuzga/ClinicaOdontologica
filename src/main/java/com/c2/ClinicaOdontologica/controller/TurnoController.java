@@ -51,7 +51,6 @@ public class TurnoController {
 
   @GetMapping
   public ResponseEntity<List<TurnoDTO>> buscarTodos() {
-
     return ResponseEntity.ok(turnoService.buscarTodos());
   }
 

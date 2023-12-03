@@ -12,13 +12,13 @@ window.generarObjetoAsignaciones = function(){
     const fecha = new Date();
     fecha.setDate(fechaActual.getDate() + i);
     const horasDisponibles = Array.from({ length: 10 }, (_, j) => {
-      const hora = String(j + 7).padStart(2, '0') + ':00';
+      const hora = String(j + 7).padStart(2, '0') + ':00:00';
       return hora;
     });
 
     asignacionesPorDia.push({
-      fecha: formatDate(fecha),
-      horas: horasDisponibles,
+      fechaTurno: formatDate(fecha),
+      horaTurno: horasDisponibles,
     });
   }
 
@@ -45,17 +45,17 @@ window.filtrarAsignaciones = function(fechasHoras, arregloOriginal) {
   const resultado = copiaAsignaciones.reduce(
     (filteredAsignaciones, asignacion) => {
       const coincideFecha = fechasHoras.some(
-        (fh) => asignacion.fecha === fh.fecha
+        (fh) => asignacion.fechaTurno === fh.fechaTurno
       );
 
       if (coincideFecha) {
-        asignacion.horas = asignacion.horas.filter((h) => {
+        asignacion.horaTurno = asignacion.horaTurno.filter((h) => {
           return !fechasHoras.some(
-            (fh) => fh.fecha === asignacion.fecha && fh.hora === h
+            (fh) => fh.fechaTurno === asignacion.fechaTurno && fh.horaTurno === h
           );
         });
 
-        if (asignacion.horas.length === 0) {
+        if (asignacion.horaTurno.length === 0) {
           return filteredAsignaciones;
         }
       }
