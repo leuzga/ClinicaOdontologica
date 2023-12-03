@@ -15,7 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/turnos")
+@RequestMapping("/turno")
 public class TurnoController {
 
   private TurnoService turnoService;
@@ -50,6 +50,7 @@ public class TurnoController {
 
   @GetMapping
   public ResponseEntity<List<TurnoDTO>> buscarTodos() {
+
     return ResponseEntity.ok(turnoService.buscarTodos());
   }
 
