@@ -10,6 +10,6 @@ import java.util.List;
 
 public interface TurnoRepository extends JpaRepository<Turno, Long> {
 
-  @Query("SELECT h.fechaTurno,h.horaTurno FROM Turno h WHERE h.odontologo.id = :odontologo_id")
+  @Query("SELECT h FROM Turno h WHERE h.odontologo.id = :odontologo_id")
   List<Turno> findTurnoByOdontologoId(@Param("odontologo_id")Long odontologo_id);
 }
