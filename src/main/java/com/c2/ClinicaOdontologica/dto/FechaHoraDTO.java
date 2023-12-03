@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.Setter;
 
 @Data
-//POJO
 public class FechaHoraDTO
 {
   private LocalDate fechaTurno;

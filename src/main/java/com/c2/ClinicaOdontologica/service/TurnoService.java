@@ -1,5 +1,6 @@
 package com.c2.ClinicaOdontologica.service;
 
+import com.c2.ClinicaOdontologica.dto.FechaHoraDTO;
 import com.c2.ClinicaOdontologica.dto.TurnoDTO;
 import com.c2.ClinicaOdontologica.entity.Odontologo;
 import com.c2.ClinicaOdontologica.entity.Paciente;
@@ -66,4 +67,21 @@ private Turno turnoDTOaTurno(TurnoDTO turnoDTO){
     turno.setPaciente(paciente);
     return turno;
 }
+
+  public List<FechaHoraDTO> buscarTurnoPorOdontologoId(Long odontologoId) {
+      List<Turno> listaTurnos = turnoRepository.findTurnoByOdontologoId(odontologoId);
+      List<FechaHoraDTO> listaTurnosOdontologo = new ArrayList<>();
+      for (Turno turno : listaTurnos) {
+          listaTurnosOdontologo.add(turnoAFechaHoraDTO(turno));
+      }
+
+      return listaTurnosOdontologo;
+
+  }
+    private FechaHoraDTO turnoAFechaHoraDTO(Turno turno){
+        FechaHoraDTO respuesta= new FechaHoraDTO();
+        respuesta.setFechaTurno(turno.getFechaTurno());
+        respuesta.setHoraTurno(turno.getHoraTurno());
+        return  respuesta;
+    }
 }

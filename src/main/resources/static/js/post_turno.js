@@ -2,6 +2,8 @@ window.addEventListener('load', function () {
   //Al cargar la pagina buscamos y obtenemos el formulario donde estarán
   //los datos que el usuario cargará los turnos disponibles
   const disponibilidad = window.generarObjetoAsignaciones();
+  let pacienteId = 0;
+  //Temporalmente cargamos los turnos mientras esta el servicio
   let fechasHoras = [
     { fecha: '2023-12-01', hora: '07:00' },
     { fecha: '2023-12-03', hora: '08:00' },
@@ -48,7 +50,7 @@ window.addEventListener('load', function () {
 
       data.forEach((odontologo) => {
         const option = document.createElement('option');
-        option.value = odontologo.matricula;
+        option.value = odontologo.id;
         option.text =  odontologo.nombre + ' ' + odontologo.apellido;
         odontologosTurno.add(option);
       })})
@@ -56,6 +58,7 @@ window.addEventListener('load', function () {
       console.log('Error: ' + error);
     });
   let emailPaciente = document.querySelector('#userEmail');
+
 
   window.findByEmail =function()  {
 
@@ -73,6 +76,7 @@ window.addEventListener('load', function () {
         document.querySelector('#apellido').value = data.apellido;
         document.querySelector('#cedula').value = data.cedula;
         document.querySelector('#email').value = data.email;
+        pacienteId = data.id;
       })
       .catch((error) => {
         console.log('Error: ' + error);
@@ -86,13 +90,15 @@ window.addEventListener('load', function () {
   formulario.addEventListener('submit', function (event) {
     //creamos un JSON que tendrá los datos del formulario para insertar turno
     const formData = {
-      matricula: document.querySelector('#matricula').value,
-      nombre: document.querySelector('#nombre').value,
-      apellido: document.querySelector('#apellido').value,
+      paciente :{ id: pacienteId},
+      odontologo: {id: document.querySelector('#odontologosTurno').value},
+      fechaTurno: document.querySelector('#fechaTurno').value,
+      horaTurno: document.querySelector('#horaTurno').value
     };
+
     //invocamos utilizando la función fetch la API peliculas con el método POST que guardará
     //la película que enviaremos en formato JSON
-    const url = '/turno';
+    const url = '/turnos';
     const settings = {
       method: 'POST',
       headers: {
@@ -134,9 +140,9 @@ window.addEventListener('load', function () {
   });
 
   function resetUploadForm() {
-    document.querySelector('#matricula').value = '';
-    document.querySelector('#nombre').value = '';
-    document.querySelector('#apellido').value = '';
+    document.querySelector('#odontologosTurno').value = '';
+    document.querySelector('#fechaTurno').value = '';
+    document.querySelector('#horaTurno').value = '';
   }
 
   (function () {

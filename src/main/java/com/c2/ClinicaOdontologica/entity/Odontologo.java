@@ -35,6 +35,10 @@ public class Odontologo {
     this.apellido = apellido;
   }
 
+  public Odontologo(Long id) {
+    this.id = id;
+  }
+
   public Odontologo(String matricula, String nombre, String apellido) {
     this.matricula = matricula;
     this.nombre = nombre;

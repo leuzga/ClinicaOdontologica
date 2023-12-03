@@ -1,5 +1,6 @@
 package com.c2.ClinicaOdontologica.controller;
 
+import com.c2.ClinicaOdontologica.dto.FechaHoraDTO;
 import com.c2.ClinicaOdontologica.dto.TurnoDTO;
 import com.c2.ClinicaOdontologica.entity.Odontologo;
 import com.c2.ClinicaOdontologica.entity.Paciente;
@@ -62,6 +63,11 @@ public class TurnoController {
     } else {
       return ResponseEntity.notFound().build(); //404
     }
+  }
+
+  @GetMapping("/odontologo/{id}")
+  public ResponseEntity<List<FechaHoraDTO>> buscarPorOdontologoId(@PathVariable Long id) {
+      return ResponseEntity.ok(turnoService.buscarTurnoPorOdontologoId(id));
   }
 
   @DeleteMapping("{id}")

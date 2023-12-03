@@ -55,7 +55,8 @@
     <div class="containerForm">
 
       <h3>Agregar/Asociar Turno</h3>
-      <form id="add_new_turno">
+
+      <div>
         <label class="control-label" for="userEmail">Email de usuario:</label>
         <div class="input-group mb-3">
           <input type="text" id="userEmail" name="userEmail" class="form-control" placeholder="Ingrese el email de usuario"  aria-describedby="email de usuario" required></input>
@@ -65,6 +66,8 @@
             </svg>
           </button>
         </div>
+      </div>
+      <form id="add_new_turno">
         <div id="info_paciente" class="collapse">
           <div class="flex-container">
             <!-- Primera Fila -->
@@ -151,5 +154,6 @@
         crossorigin="anonymous"></script>
 <script type="module" src="/js/init_setting.js"></script>
 <script type="text/javascript" src="/js/post_turno.js"></script>
+<!--<script type="text/javascript" src="/js/get_turno.js"></script>-->
 </body>
 </html>
