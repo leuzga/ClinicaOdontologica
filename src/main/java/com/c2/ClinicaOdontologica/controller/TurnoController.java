@@ -51,7 +51,14 @@ public class TurnoController {
 
   @GetMapping
   public ResponseEntity<List<TurnoDTO>> buscarTodos() {
+
     return ResponseEntity.ok(turnoService.buscarTodos());
+  }
+
+  @GetMapping("/todos")
+  public ResponseEntity<List<Turno>> buscarTurnos() {
+
+    return ResponseEntity.ok(turnoService.buscarTurnos());
   }
 
   @GetMapping("{id}")
@@ -84,7 +91,7 @@ public class TurnoController {
   }
 
   @PutMapping
-  public ResponseEntity<String> git (
+  public ResponseEntity<String> actualizarTurno(
     @RequestBody TurnoDTO turnoDTO
   ) {
     Optional<TurnoDTO> turnoDTObuscado = turnoService.buscarTurnoPorId(

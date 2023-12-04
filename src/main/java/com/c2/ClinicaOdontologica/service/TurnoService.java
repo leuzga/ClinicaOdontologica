@@ -45,6 +45,9 @@ public class TurnoService {
         }
         return listaDTO;
     }
+    public List<Turno> buscarTurnos(){
+        return turnoRepository.findAll();
+    }
 
     private TurnoDTO turnoATurnoDTO(Turno turno){
         TurnoDTO respuesta= new TurnoDTO();
@@ -82,6 +85,7 @@ private Turno turnoDTOaTurno(TurnoDTO turnoDTO){
         FechaHoraDTO respuesta= new FechaHoraDTO();
         respuesta.setFechaTurno(turno.getFechaTurno());
         respuesta.setHoraTurno(turno.getHoraTurno());
+        System.out.println(respuesta.toString());
         return  respuesta;
     }
 }
