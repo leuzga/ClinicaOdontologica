@@ -84,7 +84,7 @@ public class TurnoController {
   }
 
   @PutMapping
-  public ResponseEntity<String> actualizarTurno(
+  public ResponseEntity<String> git (
     @RequestBody TurnoDTO turnoDTO
   ) {
     Optional<TurnoDTO> turnoDTObuscado = turnoService.buscarTurnoPorId(
