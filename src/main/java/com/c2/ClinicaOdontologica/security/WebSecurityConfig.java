@@ -42,7 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
       .authorizeRequests()
       .antMatchers("/get_pacientes.html", "/post_pacientes.html", "/index.html").hasRole("ADMIN")
       .antMatchers("/get_odontologos.html", "/post_odontologos.html").hasRole("ADMIN")
-      .antMatchers("/get_turnos.html", "/post_turnos.html").hasRole("ADMIN")
+      .antMatchers("/get_turnos.html", "/post_turnos.html").hasAnyRole("USER","ADMIN")
       .antMatchers("/odontologo", "/odontologo/{id}", "/odontologo/busqueda/{matricula}", "/odontologo/todos").hasRole("ADMIN")
       .antMatchers("/paciente", "/paciente/{id}", "/paciente/busqueda/{email}", "/paciente/todos").hasRole("ADMIN")
       .antMatchers("/turnos", "/turnos/{id}", "/turnos/buscar/{email}", "/turnos/todos").hasRole("ADMIN")

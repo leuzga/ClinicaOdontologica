@@ -24,7 +24,9 @@ public class DatosInicialesSecurity implements ApplicationRunner {
         String passSinCifrar= "leuzga";
         String passCifrado= cifrador.encode(passSinCifrar);
         System.out.println("password: "+passCifrado);
-/*        Usuario usuarioInsertar= new Usuario("Lenin","leuzga","leuzga@gmail.com",passCifrado, UsuarioRole.ROLE_ADMIN);
+/*      Usuario usuarioInsertar= new Usuario("Lenin","leuzga","leuzga@gmail.com",passCifrado, UsuarioRole.ROLE_ADMIN);
+        usuarioRepository.save(usuarioInsertar);
+        Usuario usuarioInsertar= new Usuario("Cleidy","cleidy","clidy@gmail.com",passCifrado, UsuarioRole.ROLE_USER);
         usuarioRepository.save(usuarioInsertar);*/
 
     }
