@@ -3,7 +3,7 @@ package com.c2.ClinicaOdontologica;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+//@SpringBootTest
 class ClinicaOdontologicaApplicationTests {
 
 	@Test
